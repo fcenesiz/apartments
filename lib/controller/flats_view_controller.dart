@@ -1,7 +1,8 @@
 import 'package:apartments/di/app_module.dart';
-import 'package:apartments/model/building.dart';
+
 import 'package:get/get.dart';
 
+import '../model/building/building.dart';
 import '../model/flat.dart';
 
 class FlatsViewController extends GetxController {

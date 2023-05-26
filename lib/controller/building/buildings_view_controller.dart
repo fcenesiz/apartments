@@ -1,6 +1,8 @@
 import 'package:apartments/di/app_module.dart';
 import 'package:get/get.dart';
-import '../model/building.dart';
+
+import '../../model/building/building.dart';
+
 
 class BuildingsViewController extends GetxController {
   var buildings = [].obs;

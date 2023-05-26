@@ -19,9 +19,8 @@ class UpdateFeeViewController extends GetxController {
     setValuesByArguments();
     realizedQtyController.addListener(
       () {
-        if (realizedQtyController.text.length >
-            0) if (double.parse(realizedQtyController.text) > fee.quantity) {
-          realizedQtyController.text = fee.quantity.toString();
+        if (realizedQtyController.text.isNotEmpty && double.parse(realizedQtyController.text) > fee.quantity) {
+        realizedQtyController.text = fee.quantity.toString();
         }
       },
     );
@@ -38,7 +37,6 @@ class UpdateFeeViewController extends GetxController {
 
   void setValuesByArguments() {
     fee = Get.arguments as Fee;
-    sMonth.value = fee.sMonth;
     month.value = fee.month;
     year.value = fee.year;
     if (fee.realizedQuantity != 0.0) {

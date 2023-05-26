@@ -1,9 +1,9 @@
-
-import 'package:apartments/controller/buildings_view_controller.dart';
-import 'package:apartments/model/building.dart';
 import 'package:apartments/view/components.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../../controller/building/buildings_view_controller.dart';
+import '../../model/building/building.dart';
 
 class BuildingsView extends StatelessWidget {
   final BuildingsViewController _controller =

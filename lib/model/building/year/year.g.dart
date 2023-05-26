@@ -1,40 +1,37 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'fee.dart';
+part of 'year.dart';
 
 // **************************************************************************
 // TypeAdapterGenerator
 // **************************************************************************
 
-class FeeAdapter extends TypeAdapter<Fee> {
+class YearAdapter extends TypeAdapter<Year> {
   @override
-  final int typeId = 2;
+  final int typeId = 3;
 
   @override
-  Fee read(BinaryReader reader) {
+  Year read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return Fee()
-      ..quantity = fields[0] as double
-      ..realizedQuantity = fields[1] as double
-      ..month = fields[2] as int
-      ..year = fields[3] as int;
+    return Year()
+      ..number = fields[0] as int
+      ..offsetMonth = fields[1] as int
+      ..feeQuantity = fields[2] as double;
   }
 
   @override
-  void write(BinaryWriter writer, Fee obj) {
+  void write(BinaryWriter writer, Year obj) {
     writer
-      ..writeByte(4)
-      ..writeByte(0)
-      ..write(obj.quantity)
-      ..writeByte(1)
-      ..write(obj.realizedQuantity)
-      ..writeByte(2)
-      ..write(obj.month)
       ..writeByte(3)
-      ..write(obj.year);
+      ..writeByte(0)
+      ..write(obj.number)
+      ..writeByte(1)
+      ..write(obj.offsetMonth)
+      ..writeByte(2)
+      ..write(obj.feeQuantity);
   }
 
   @override
@@ -43,7 +40,7 @@ class FeeAdapter extends TypeAdapter<Fee> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is FeeAdapter &&
+      other is YearAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }

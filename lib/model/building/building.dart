@@ -1,12 +1,12 @@
+import 'package:apartments/model/building/year/year.dart';
 import 'package:hive/hive.dart';
 
-import 'flat.dart';
+import '../flat.dart';
 
 part 'building.g.dart';
 
 @HiveType(typeId: 0)
-class Building extends HiveObject{
-
+class Building extends HiveObject {
   @HiveField(0)
   late String name;
 
@@ -17,6 +17,8 @@ class Building extends HiveObject{
   List<Flat> flats = [];
 
   @HiveField(3)
-  late double quantity;
+  late List<Year> years;
+
   
+
 }

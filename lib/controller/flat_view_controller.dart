@@ -1,9 +1,12 @@
 import 'package:apartments/di/app_module.dart';
 import 'package:apartments/model/fee.dart';
 import 'package:apartments/model/flat.dart';
+import 'package:apartments/other/constants.dart';
 import 'package:get/get.dart';
 
-import '../model/building.dart';
+import '../model/building/building.dart';
+
+
 
 class FlatViewContoller extends GetxController{
 
@@ -27,7 +30,6 @@ class FlatViewContoller extends GetxController{
     var list = (Get.arguments as List);
     _flat = list[0] as Flat;
     _building = list[1] as Building;
-  
     buildingName.value = _building.name;
     buildingNo.value = _building.no;
     ownerName.value = _flat.ownerName;

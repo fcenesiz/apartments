@@ -67,7 +67,7 @@ class UpdateFeeView extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 32),
+              padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 8),
               child: ElevatedButton(
                 onPressed: _controller.updateFee,
                 child: Container(

@@ -13,11 +13,8 @@ class Fee extends HiveObject{
 
   @HiveField(2)
   late int month;
-
-  @HiveField(3)
-  late String sMonth;
   
-  @HiveField(4)
+  @HiveField(3)
   late int year;
 
 

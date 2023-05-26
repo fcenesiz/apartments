@@ -3,7 +3,7 @@ import 'package:apartments/view/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 import 'package:get/get.dart';
-import '../model/building.dart';
+import '../model/building/building.dart';
 import '../model/flat.dart';
 
 class FlatsView extends StatelessWidget {

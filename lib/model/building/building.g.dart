@@ -20,7 +20,7 @@ class BuildingAdapter extends TypeAdapter<Building> {
       ..name = fields[0] as String
       ..no = fields[1] as int
       ..flats = (fields[2] as List).cast<Flat>()
-      ..quantity = fields[3] as double;
+      ..years = (fields[3] as List).cast<Year>();
   }
 
   @override
@@ -34,7 +34,7 @@ class BuildingAdapter extends TypeAdapter<Building> {
       ..writeByte(2)
       ..write(obj.flats)
       ..writeByte(3)
-      ..write(obj.quantity);
+      ..write(obj.years);
   }
 
   @override

@@ -1,4 +1,5 @@
 import 'package:apartments/controller/flat_view_controller.dart';
+import 'package:apartments/other/extensions.dart';
 import 'package:apartments/view/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
@@ -38,7 +39,7 @@ class FlatView extends StatelessWidget {
                             //backgroundColor: Colors.yellowAccent,
                             radius: 40,
                             child: Text(
-                              "${_controller.ownerName.substring(0, 1)}",
+                              _controller.ownerName.value.initials,
                               style: listTextStyle,
                             ),
                           ),
@@ -65,7 +66,7 @@ class FlatView extends StatelessWidget {
                   ],
                 ),
                 Text(
-                    "${_controller.fees[0].year} yılı aidat bedeli: ₺${_controller.fees[0].quantity}"),
+                    "${_controller.fees[0].year} yılı aidat bedeli: ₺${_controller.fees.firstWhere((element) => element.quantity > 0).quantity}"),
               ],
             ),
           ),
@@ -85,10 +86,12 @@ class FlatView extends StatelessWidget {
       floatingActionButton: ExpandableFab(
         children: [
           FloatingActionButton(
+            heroTag: null,
             child: const Icon(Icons.edit),
             onPressed: () {},
           ),
           FloatingActionButton(
+            heroTag: null,
             child: const Icon(Icons.search),
             onPressed: () {},
           ),
@@ -119,7 +122,7 @@ Widget FeesView(List<Fee> fees) {
                         Expanded(
                           flex: 1,
                           child: Text(
-                            fee.sMonth,
+                            fee.month.convertMonthToText,
                             style: listTextStyle,
                           ),
                         ),
@@ -130,11 +133,13 @@ Widget FeesView(List<Fee> fees) {
                             mainAxisAlignment: MainAxisAlignment.end,
                             children: [
                               Text(
-                                (fee.realizedQuantity == 0)
-                                    ? "Ödeme giriniz"
-                                    : (fee.realizedQuantity != fee.quantity)
-                                        ? "₺${fee.realizedQuantity}"
-                                        : "Ödendi",
+                                (fee.quantity < 0)
+                                    ? "-"
+                                    : (fee.realizedQuantity == 0)
+                                        ? "Ödeme giriniz"
+                                        : (fee.realizedQuantity != fee.quantity)
+                                            ? "₺${fee.realizedQuantity}"
+                                            : "Ödendi",
                                 style: (fee.realizedQuantity > 0 &&
                                         fee.realizedQuantity == fee.quantity)
                                     ? TextStyle(
@@ -149,14 +154,14 @@ Widget FeesView(List<Fee> fees) {
                               ),
                               (fee.realizedQuantity > 0 &&
                                       fee.realizedQuantity == fee.quantity)
-                                  ? Padding(
-                                      padding: const EdgeInsets.only(left: 8.0),
+                                  ? const Padding(
+                                      padding: EdgeInsets.only(left: 8.0),
                                       child: Icon(
                                         Icons.done,
                                         color: Colors.green,
                                       ),
                                     )
-                                  : SizedBox()
+                                  : const SizedBox()
                             ],
                           ),
                         ),
