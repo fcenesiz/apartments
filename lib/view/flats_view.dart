@@ -22,10 +22,28 @@ class FlatsView extends StatelessWidget {
         ),
         body: Obx(
           () => Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
               (_controller.flats.isEmpty)
-                  ? const SizedBox()
+                  ? Expanded(
+                      child: Center(
+                        child: ElevatedButton(
+                          child: const Padding(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 8, horizontal: 32),
+                            child: Text(
+                              "Daire Ekle",
+                              style: TextStyle(fontSize: 18),
+                            ),
+                          ),
+                          onPressed: () {
+                            Get.toNamed("/add_flat");
+                          },
+                        ),
+                      ),
+                    )
                   : Row(
                       children: [
                         SizedBox(
@@ -81,8 +99,8 @@ class FlatsView extends StatelessWidget {
         ),
         floatingActionButton: ExpandableFab(
           key: _controller.getFabKey(),
-          distance: 75,
-          fanAngle: 75,
+          distance: 100,
+          fanAngle: 90,
           children: [
             FloatingActionButton(
               heroTag: null,
@@ -99,6 +117,11 @@ class FlatsView extends StatelessWidget {
                 Get.toNamed("/add_flat");
               },
             ),
+            FloatingActionButton(
+              heroTag: null,
+              child: const Icon(Icons.delete),
+              onPressed: _controller.deleteBuilding,
+            ),
           ],
         ),
         floatingActionButtonLocation: ExpandableFab.location,
@@ -110,7 +133,7 @@ class FlatsView extends StatelessWidget {
 Widget FlatsWidget(FlatsViewController controller) {
   return SingleChildScrollView(
     child: Column(
-      mainAxisSize: MainAxisSize.max,
+      mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: controller.flats
           .map((flat) => FlatWidget(flat, controller.getBuilding()!))
@@ -121,7 +144,7 @@ Widget FlatsWidget(FlatsViewController controller) {
 
 Widget FlatWidget(Flat flat, Building building) {
   return Card(
-    margin: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+    margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
     child: InkWell(
       onTap: () {
         Get.toNamed("/flat", arguments: [flat, building]);
@@ -152,7 +175,7 @@ Widget YearSelectorView(FlatsViewController contoller) {
       itemHeight: null,
       icon: const Icon(Icons.arrow_drop_down, color: Colors.deepPurple),
       iconSize: 24,
-      underline: SizedBox(),
+      underline: const SizedBox(),
       focusColor: Colors.white,
       value: contoller.selectedYear.value,
       isDense: true,

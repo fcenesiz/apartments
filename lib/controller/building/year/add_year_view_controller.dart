@@ -24,6 +24,13 @@ class AddYearViewController extends GetxController {
   RxString offsetMonth = months[0].obs;
   late String from;
 
+  @override
+  void onInit() {
+    // TODO: implement onInit
+    setValuesByArguments();
+    super.onInit();
+  }
+
   void createYear() {
     _year
       ..number = number.value
@@ -38,13 +45,6 @@ class AddYearViewController extends GetxController {
       _updateBuildingViewController.refleshYearList(recent: _year);
     }
     Get.back();
-  }
-
-  @override
-  void onInit() {
-    // TODO: implement onInit
-    setValuesByArguments();
-    super.onInit();
   }
 
   void setValuesByArguments() {

@@ -1,3 +1,4 @@
+import 'package:apartments/controller/building/buildings_view_controller.dart';
 import 'package:apartments/di/app_module.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
@@ -9,6 +10,8 @@ import '../model/building/building.dart';
 import '../model/flat.dart';
 
 class FlatsViewController extends GetxController {
+  final BuildingsViewController _buildingsViewController =
+      Get.put(BuildingsViewController());
   var flatCount = 0.obs;
   var totalFee = 0.0.obs;
   var paidFee = 0.0.obs;
@@ -34,7 +37,7 @@ class FlatsViewController extends GetxController {
         var _building = AppModule.hiveHelper.buildingsBox.get(building!.key);
         _building?.flats.add(recent);
       }
-      building!.save();
+
       flats.assignAll(building!.flats);
       flats.sort(
         (a, b) => a.no.compareTo(b.no),
@@ -93,6 +96,12 @@ class FlatsViewController extends GetxController {
     if (_fabKey.currentState!.isOpen) {
       _fabKey.currentState!.toggle();
     }
+  }
+
+  void deleteBuilding() {
+    AppModule.hiveHelper.buildingsBox.get(building!.key)!.delete();
+    _buildingsViewController.refleshList();
+    Get.back();
   }
 
   Building? getBuilding() {

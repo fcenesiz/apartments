@@ -13,13 +13,31 @@ class BuildingsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Binalar"),
+        title: const Text("Binalar"),
       ),
-      body: Center(
-        child: BuildingsWidget(_controller),
+      body: Obx(
+        () => Center(
+          child: (_controller.buildings.isEmpty)
+              ? Center(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Get.toNamed("/add_building");
+                    },
+                    child: const Padding(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 8, horizontal: 32),
+                      child: Text(
+                        "Bina Ekle",
+                        style: TextStyle(fontSize: 18),
+                      ),
+                    ),
+                  ),
+                )
+              : BuildingsWidget(_controller),
+        ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
         onPressed: () {
           Get.toNamed("/add_building");
         },
@@ -29,24 +47,22 @@ class BuildingsView extends StatelessWidget {
 }
 
 Widget BuildingsWidget(BuildingsViewController controller) {
-  return Obx(
-    () => SingleChildScrollView(
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: controller.buildings
-            .map(
-              (building) => BuildingWidget(building),
-            )
-            .toList(),
-      ),
+  return SingleChildScrollView(
+    child: Column(
+      mainAxisSize: MainAxisSize.max,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: controller.buildings
+          .map(
+            (building) => BuildingWidget(building),
+          )
+          .toList(),
     ),
   );
 }
 
 Widget BuildingWidget(Building building) {
   return Card(
-    margin: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+    margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
     child: InkWell(
       onTap: () {
         Get.toNamed("/flats", arguments: building);
