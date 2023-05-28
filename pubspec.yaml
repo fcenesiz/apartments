@@ -43,6 +43,7 @@ dependencies:
   numberpicker: ^2.1.2
   flutter_expandable_fab: ^1.8.0
   supercharged: ^2.1.1
+  d_chart: ^2.2.11
 
 dev_dependencies:
   flutter_test:

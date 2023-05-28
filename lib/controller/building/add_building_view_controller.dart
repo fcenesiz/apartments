@@ -5,7 +5,7 @@ import '../../model/building/building.dart';
 import 'buildings_view_controller.dart';
 
 class AddBuildingViewController extends GetxController {
-  BuildingsViewController _buildingsViewController =
+  final BuildingsViewController _buildingsViewController =
       Get.put(BuildingsViewController());
 
   TextEditingController nameController = TextEditingController();
@@ -22,7 +22,9 @@ class AddBuildingViewController extends GetxController {
   }
 
   void createBuilding() {
-    if (nameController.text.isEmpty || noController.text.isEmpty) return;
+    if (nameController.text.isEmpty ||
+        noController.text.isEmpty ||
+        years.isEmpty) return;
     building
       ..name = nameController.text
       ..no = int.parse(noController.text);

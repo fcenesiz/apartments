@@ -48,13 +48,15 @@ class ApartmentsApp extends StatelessWidget {
   }
 }
 
-// TODO: kolay, tamamlandı
-// TODO: bir daire eklendiğinde bütün yılların default aidatları daireye tanımlansın.
+// TODO: kolay, tamamlandı 
+// bir daire eklendiğinde bütün yılların default aidatları daireye tanımlansın.
 
-// TODO: zor, devam ediyor
-// TODO: yeni bir yıl eklendiğinde veya eklenmiş bir yıl güncellendiğinde,
+// TODO: zor, tamamlandı
+// yeni bir yıl eklendiğinde veya eklenmiş bir yıl güncellendiğinde,
 // o yılın default aidatları bütün dairelere yansıtılsın.
 
 // TODO: kolay, devam ediyor
-// TODO: son 12 ayın ödenmiş aidatlarının alınıp analizinin yapılması.
+// son 12 ayın ödenmiş aidatlarının alınıp analizinin yapılması.
 
+// TODO: kolay, devam ediyor
+// binaya yeni bir yıl eklendiğinde bina ekranı güncellenmeli.

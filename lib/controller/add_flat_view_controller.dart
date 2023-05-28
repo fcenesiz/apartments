@@ -20,7 +20,7 @@ class AddFlatViewController extends GetxController {
     flat.no = int.parse(noController.text);
 
     for (var nextYear in _flatsViewController.building!.years) {
-      flat.fees.assignAll(createDefaultFees(nextYear));
+      flat.fees.addAll(createDefaultFees(nextYear));
     }
 
     _flatsViewController.refleshList(recent: flat);

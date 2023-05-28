@@ -9,7 +9,6 @@ class UpdateFeeViewController extends GetxController {
   TextEditingController realizedQtyController = TextEditingController();
 
   late Fee fee;
-  var sMonth = "".obs;
   var month = 1.obs;
   var year = 2023.obs;
 
@@ -19,19 +18,20 @@ class UpdateFeeViewController extends GetxController {
     setValuesByArguments();
     realizedQtyController.addListener(
       () {
-        if (realizedQtyController.text.isNotEmpty && double.parse(realizedQtyController.text) > fee.quantity) {
-        realizedQtyController.text = fee.quantity.toString();
+        if (realizedQtyController.text.isNotEmpty &&
+            double.parse(realizedQtyController.text) > fee.quantity) {
+          realizedQtyController.text = fee.quantity.toString();
         }
       },
     );
   }
 
-  void updateFee() async {
+  void updateFee() {
     if (realizedQtyController.text.isEmpty) return;
     fee.realizedQuantity = double.parse(realizedQtyController.text);
     fee.month = month.value;
     fee.year = year.value;
-    await _flatViewContoller.refleshFees(updatedFee: fee);
+    _flatViewContoller.refleshFees(updatedFee: fee);
     Get.back();
   }
 

@@ -1,4 +1,5 @@
 import 'package:apartments/controller/update_fee_view_controller.dart';
+import 'package:apartments/other/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -24,13 +25,15 @@ class UpdateFeeView extends StatelessWidget {
                 padding: const EdgeInsets.all(64.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "${_controller.sMonth} ${_controller.year}",
+                      "${_controller.year} ${_controller.month.value.convertMonthToText}",
                       style: listTextStyle,
                     ),
+                    Text("Belirlenmiş olan aidat ₺${_controller.fee.quantity}"),
                     SizedBox(
-                      height: 16,
+                      height: 8,
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
