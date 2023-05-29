@@ -5,7 +5,9 @@ import 'package:apartments/model/flat.dart';
 import 'package:get/get.dart';
 import 'package:supercharged/supercharged.dart';
 
-import '../model/building/building.dart';
+import '../../model/building/building.dart';
+
+
 
 class FlatViewContoller extends GetxController {
   var buildingName = "".obs;
@@ -17,7 +19,7 @@ class FlatViewContoller extends GetxController {
   var fees = <Fee>[].obs;
   var years = <int>[];
 
-  late Flat _flat;
+  late Flat flat;
   late Building _building;
 
   final FlatsViewController _flatsViewController =
@@ -32,20 +34,27 @@ class FlatViewContoller extends GetxController {
 
   void setVariablesByArguments() {
     var list = (Get.arguments as List);
-    _flat = list[0] as Flat;
+    flat = list[0] as Flat;
     _building = list[1] as Building;
     buildingName.value = _building.name;
     buildingNo.value = _building.no;
-    ownerName.value = _flat.ownerName;
-    no.value = _flat.no;
+    ownerName.value = flat.ownerName;
+    no.value = flat.no;
     selectedYear.value =
-        _flat.fees.maxBy((a, b) => a.year.compareTo(b.year))!.year;
+        flat.fees.maxBy((a, b) => a.year.compareTo(b.year))!.year;
     years.addAll(_building.years.map((e) => e.number));
+  }
+
+  void refreshByUpdatedData(String name, int no){
+    this.ownerName.value = name;
+    this.no.value = no;
+    AppModule.hiveHelper.buildingsBox.get(_building.key)!.save();
+    //.flats.firstWhere((element) => element.ownerName == flat.ownerName && element.no == flat.no).save();
   }
 
   Future<void> refleshFees({Fee? updatedFee}) async {
     if (updatedFee != null) {
-      _flat.fees
+      flat.fees
           .firstWhere((element) =>
               element.month == updatedFee.month &&
               element.year == updatedFee.year)
@@ -53,13 +62,13 @@ class FlatViewContoller extends GetxController {
     }
 
     fees.assignAll(
-        _flat.fees.filter((element) => element.year == selectedYear.value));
+        flat.fees.filter((element) => element.year == selectedYear.value));
   }
 
   void changeYear(int? year) {
     selectedYear.value = year!;
     fees.assignAll(
-        _flat.fees.filter((element) => element.year == selectedYear.value));
+        flat.fees.filter((element) => element.year == selectedYear.value));
   }
 
   void deleteFlat() {
@@ -67,7 +76,7 @@ class FlatViewContoller extends GetxController {
         .get(_building.key)!
         .flats
         .removeWhere((element) =>
-            element.no == _flat.no && element.ownerName == _flat.ownerName);
+            element.no == flat.no && element.ownerName == flat.ownerName);
     _flatsViewController.refleshList();
     Get.back();
   }

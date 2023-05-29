@@ -1,7 +1,9 @@
-import 'package:apartments/controller/flat_view_controller.dart';
+
 import 'package:apartments/model/fee.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'flat/flat_view_controller.dart';
 
 class UpdateFeeViewController extends GetxController {
   final FlatViewContoller _flatViewContoller = Get.put(FlatViewContoller());

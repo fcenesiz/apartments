@@ -4,8 +4,10 @@ import 'package:apartments/other/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../model/building/year/year.dart';
-import '../model/fee.dart';
+import '../../model/building/year/year.dart';
+import '../../model/fee.dart';
+
+
 
 class AddFlatViewController extends GetxController {
   FlatsViewController _flatsViewController = Get.put(FlatsViewController());

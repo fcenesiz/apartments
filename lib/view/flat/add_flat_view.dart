@@ -1,9 +1,11 @@
-import 'package:apartments/controller/add_flat_view_controller.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-import 'components.dart';
+import '../../controller/flat/add_flat_view_controller.dart';
+import '../components.dart';
+
 
 class AddFlatView extends StatelessWidget {
   

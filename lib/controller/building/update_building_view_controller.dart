@@ -77,8 +77,8 @@ class UpdateBuildingViewController extends GetxController {
           fee.quantity = year.feeQuantity;
           if (fee.realizedQuantity < 0.0) fee.realizedQuantity = 0.0;
         } else {
-          fee.quantity = -1;
-          fee.realizedQuantity = -1;
+          //fee.quantity = -1;
+          //fee.realizedQuantity = -1;
         }
       }
     }

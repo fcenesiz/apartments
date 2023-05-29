@@ -1,11 +1,14 @@
-import 'package:apartments/controller/flat_view_controller.dart';
+
 import 'package:apartments/other/extensions.dart';
 import 'package:apartments/view/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_expandable_fab/flutter_expandable_fab.dart';
 import 'package:get/get.dart';
 
-import '../model/fee.dart';
+import '../../controller/flat/flat_view_controller.dart';
+import '../../model/fee.dart';
+
+
 
 class FlatView extends StatelessWidget {
   final FlatViewContoller _controller = Get.put(FlatViewContoller());
@@ -100,7 +103,9 @@ class FlatView extends StatelessWidget {
           FloatingActionButton(
             heroTag: null,
             child: const Icon(Icons.edit),
-            onPressed: () {},
+            onPressed: () {
+              Get.toNamed("/update_flat", arguments: _controller.flat);
+            },
           ),
           FloatingActionButton(
             heroTag: null,
@@ -146,6 +151,7 @@ Widget FeesView(List<Fee> fees) {
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   Text(
+                                    (fee.quantity < fee.realizedQuantity) ? "Ödendi (+₺${(fee.realizedQuantity - fee.quantity).toInt()})" : 
                                     (fee.quantity < 0)
                                         ? "-"
                                         : (fee.realizedQuantity == 0)
@@ -155,7 +161,7 @@ Widget FeesView(List<Fee> fees) {
                                                 ? "₺${fee.realizedQuantity}"
                                                 : "Ödendi",
                                     style: (fee.realizedQuantity > 0 &&
-                                            fee.realizedQuantity ==
+                                            fee.realizedQuantity >=
                                                 fee.quantity)
                                         ? TextStyle(
                                             color: Colors.green,
@@ -169,7 +175,7 @@ Widget FeesView(List<Fee> fees) {
                                     textAlign: TextAlign.end,
                                   ),
                                   (fee.realizedQuantity > 0 &&
-                                          fee.realizedQuantity == fee.quantity)
+                                          fee.realizedQuantity >= fee.quantity)
                                       ? const Padding(
                                           padding: EdgeInsets.only(left: 8.0),
                                           child: Icon(
