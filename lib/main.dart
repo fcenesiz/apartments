@@ -1,4 +1,6 @@
 import 'package:apartments/di/app_module.dart';
+import 'package:apartments/other/excel/excel_hepler.dart';
+import 'package:apartments/view/about_view.dart';
 import 'package:apartments/view/building/add_building_view.dart';
 import 'package:apartments/view/building/buildings_view.dart';
 import 'package:apartments/view/building/update_building_view.dart';
@@ -13,8 +15,6 @@ import 'package:apartments/view/flats_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -47,6 +47,7 @@ class ApartmentsApp extends StatelessWidget {
         GetPage(name: '/add_flat', page: () => AddFlatView()),
         GetPage(name: '/update_flat', page: () => UpdateFlatView()),
         GetPage(name: '/update_fee', page: () => UpdateFeeView()),
+        GetPage(name: "/about", page: () => AboutView()),
       ],
     );
   }

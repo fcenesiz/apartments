@@ -1,9 +1,9 @@
+
 import 'package:apartments/controller/update_fee_view_controller.dart';
 import 'package:apartments/other/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-
 import 'components.dart';
 
 class UpdateFeeView extends StatelessWidget {

@@ -93,7 +93,7 @@ class FlatsView extends StatelessWidget {
                         ),
                       ],
                     ),
-              FlatsWidget(_controller),
+              Flexible(child: FlatsWidget(_controller)),
             ],
           ),
         ),
@@ -131,13 +131,25 @@ class FlatsView extends StatelessWidget {
 }
 
 Widget FlatsWidget(FlatsViewController controller) {
-  return SingleChildScrollView(
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: controller.flats
-          .map((flat) => FlatWidget(flat, controller.getBuilding()!))
-          .toList(),
+  return Container(
+    height: double.infinity,
+    width: double.infinity,
+    decoration: BoxDecoration(
+      color: Color.fromARGB(255, 255, 242, 255),
+      borderRadius: BorderRadius.only(
+        topRight: Radius.circular(25),
+        topLeft: Radius.circular(25),
+      ),
+      
+    ),
+    child: SingleChildScrollView(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: controller.flats
+            .map((flat) => FlatWidget(flat, controller.getBuilding()!))
+            .toList(),
+      ),
     ),
   );
 }

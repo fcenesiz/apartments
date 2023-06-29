@@ -59,6 +59,7 @@ class FlatViewContoller extends GetxController {
               element.month == updatedFee.month &&
               element.year == updatedFee.year)
           .realizedQuantity = updatedFee.realizedQuantity;
+          AppModule.hiveHelper.buildingsBox.get(_building.key)!.save();
     }
 
     fees.assignAll(

@@ -120,80 +120,92 @@ class FlatView extends StatelessWidget {
 }
 
 Widget FeesView(List<Fee> fees) {
-  return SingleChildScrollView(
-    child: Column(
-      children: fees
-          .map(
-            (fee) => (fee.quantity < 0.0)
-                ? SizedBox()
-                : Card(
-                    child: InkWell(
-                      onTap: () {
-                        Get.toNamed("/update_fee", arguments: fee);
-                      },
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Expanded(
-                              flex: 1,
-                              child: Text(
-                                fee.month.convertMonthToText,
-                                style: listTextStyle,
+  return Container(
+    height: double.infinity,
+    width: double.infinity,
+    decoration: BoxDecoration(
+      color: Color.fromARGB(255, 255, 242, 255),
+      borderRadius: BorderRadius.only(
+        topRight: Radius.circular(25),
+        topLeft: Radius.circular(25),
+      ),
+      
+    ),
+    child: SingleChildScrollView(
+      child: Column(
+        children: fees
+            .map(
+              (fee) => (fee.quantity < 0.0)
+                  ? SizedBox()
+                  : Card(
+                      child: InkWell(
+                        onTap: () {
+                          Get.toNamed("/update_fee", arguments: fee);
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Expanded(
+                                flex: 1,
+                                child: Text(
+                                  fee.month.convertMonthToText,
+                                  style: listTextStyle,
+                                ),
                               ),
-                            ),
-                            Expanded(
-                              flex: 2,
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Text(
-                                    (fee.quantity < fee.realizedQuantity) ? "Ödendi (+₺${(fee.realizedQuantity - fee.quantity).toInt()})" : 
-                                    (fee.quantity < 0)
-                                        ? "-"
-                                        : (fee.realizedQuantity == 0)
-                                            ? "Ödeme giriniz"
-                                            : (fee.realizedQuantity !=
-                                                    fee.quantity)
-                                                ? "₺${fee.realizedQuantity}"
-                                                : "Ödendi",
-                                    style: (fee.realizedQuantity > 0 &&
-                                            fee.realizedQuantity >=
-                                                fee.quantity)
-                                        ? TextStyle(
-                                            color: Colors.green,
-                                            fontSize: listTextStyle.fontSize)
-                                        : (fee.realizedQuantity > 0)
-                                            ? TextStyle(
-                                                color: Colors.orange,
-                                                fontSize:
-                                                    listTextStyle.fontSize)
-                                            : listTextStyle,
-                                    textAlign: TextAlign.end,
-                                  ),
-                                  (fee.realizedQuantity > 0 &&
-                                          fee.realizedQuantity >= fee.quantity)
-                                      ? const Padding(
-                                          padding: EdgeInsets.only(left: 8.0),
-                                          child: Icon(
-                                            Icons.done,
-                                            color: Colors.green,
-                                          ),
-                                        )
-                                      : const SizedBox()
-                                ],
+                              Expanded(
+                                flex: 2,
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Text(
+                                      (fee.quantity < fee.realizedQuantity) ? "Ödendi (+₺${(fee.realizedQuantity - fee.quantity).toInt()})" : 
+                                      (fee.quantity < 0)
+                                          ? "-"
+                                          : (fee.realizedQuantity == 0)
+                                              ? "Ödeme giriniz"
+                                              : (fee.realizedQuantity !=
+                                                      fee.quantity)
+                                                  ? "₺${fee.realizedQuantity}"
+                                                  : "Ödendi",
+                                      style: (fee.realizedQuantity > 0 &&
+                                              fee.realizedQuantity >=
+                                                  fee.quantity)
+                                          ? TextStyle(
+                                              color: Colors.green,
+                                              fontSize: listTextStyle.fontSize)
+                                          : (fee.realizedQuantity > 0)
+                                              ? TextStyle(
+                                                  color: Colors.orange,
+                                                  fontSize:
+                                                      listTextStyle.fontSize)
+                                              : listTextStyle,
+                                      textAlign: TextAlign.end,
+                                    ),
+                                    (fee.realizedQuantity > 0 &&
+                                            fee.realizedQuantity >= fee.quantity)
+                                        ? const Padding(
+                                            padding: EdgeInsets.only(left: 8.0),
+                                            child: Icon(
+                                              Icons.done,
+                                              color: Colors.green,
+                                            ),
+                                          )
+                                        : const SizedBox()
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
                     ),
-                  ),
-          )
-          .toList(),
+            )
+            .toList(),
+      ),
     ),
   );
 }

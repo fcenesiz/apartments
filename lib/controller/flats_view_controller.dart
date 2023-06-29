@@ -36,6 +36,7 @@ class FlatsViewController extends GetxController {
       if (recent != null) {
         var _building = AppModule.hiveHelper.buildingsBox.get(building!.key);
         _building?.flats.add(recent);
+        _building?.save();
       }
 
       flats.assignAll(building!.flats);

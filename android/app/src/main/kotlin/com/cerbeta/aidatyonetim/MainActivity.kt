@@ -1,4 +1,4 @@
-package com.example.apartments
+package com.cerbeta.aidatyonetim
 
 import io.flutter.embedding.android.FlutterActivity
 

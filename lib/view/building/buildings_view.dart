@@ -1,6 +1,8 @@
+import 'package:apartments/di/app_module.dart';
 import 'package:apartments/view/components.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import '../../controller/building/buildings_view_controller.dart';
 import '../../model/building/building.dart';
@@ -14,6 +16,39 @@ class BuildingsView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Binalar"),
+        actions: [
+          IconButton(
+              onPressed: () async {
+                await AppModule.permissionHelper
+                    .requestPermission([Permission.storage]);
+                try {
+                  AppModule.excelHelper.exportGeneral(context);
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Row(
+                    children: [
+                      Text("Rapor "),
+                      Text(
+                        "Indirilenler",
+                        style: TextStyle(color: Colors.amber),
+                      ),
+                      Text(" klaörüne kaydedildi!")
+                    ],
+                  )));
+                } catch (e) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text("Hata: $e", style: TextStyle(color: Colors.redAccent),),
+                    ),
+                  );
+                }
+              },
+              icon: Icon(Icons.output)),
+          IconButton(
+              onPressed: () {
+                Get.toNamed("/about");
+              },
+              icon: Icon(Icons.question_mark))
+        ],
       ),
       body: Obx(
         () => Center(

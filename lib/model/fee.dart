@@ -9,7 +9,7 @@ class Fee extends HiveObject{
   late double quantity;
 
   @HiveField(1)
-  late double realizedQuantity;
+  late double realizedQuantity = 0.0;
 
   @HiveField(2)
   late int month;
